@@ -1,3 +1,6 @@
+body{
+    background-color: #EDEEF0;
+}
 .auth{
     height: 100vh;
     line-height: 100vh;
@@ -9,4 +12,38 @@
     color: #fff;
     background-color: #507299;
     text-decoration: none;
+}
+
+.text-right{
+    padding: 5px;
+    background-color: #507299;
+}
+
+.text-right a{
+    color: #fff;
+}
+
+.text-right img{
+    border-radius: 50%;
+}
+
+.exit{
+    border: 1px solid #305075;
+    background-color: #507299;
+    padding: 2px 5px;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.message textarea{
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.sendbtn{
+    float: right;
+    border-radius: 5px;
+    padding: 5px 20px;
 }

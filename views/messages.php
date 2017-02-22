@@ -1,39 +1,29 @@
 <?php
+require_once ROOT.'/models/Login.php';
 
-require_once(ROOT.'/config/api.php');
-
-if (isset($_GET['code'])) {
-    $result = false;
-    $params = array(
-        'client_id' => $client_id,
-        'client_secret' => $client_secret,
-        'code' => $_GET['code'],
-        'redirect_uri' => $redirect_uri
-    );
-
-    $token = json_decode(file_get_contents('https://oauth.vk.com/access_token' . '?' . urldecode(http_build_query($params))), true);
-
-    if (isset($token['access_token'])) {
-        $params = array(
-            'uids'         => $token['user_id'],
-            'fields'       => 'uid,first_name,last_name,screen_name,sex,bdate,photo_big',
-            'access_token' => $token['access_token']
-        );
-
-        $userInfo = json_decode(file_get_contents('https://api.vk.com/method/users.get' . '?' . urldecode(http_build_query($params))), true);
-        if (isset($userInfo['response'][0]['uid'])) {
-            $userInfo = $userInfo['response'][0];
-            $result = true;
-        }
-    }
-
-    if ($result) {
-        echo "Социальный ID пользователя: " . $userInfo['uid'] . '<br />';
-        echo "Имя пользователя: " . $userInfo['first_name'] . '<br />';
-        echo "Фамилия пользователя: " . $userInfo['last_name'] . '<br />';
-        echo "Ссылка на профиль пользователя: " . $userInfo['screen_name'] . '<br />';
-        echo "Пол пользователя: " . $userInfo['sex'] . '<br />';
-        echo "День Рождения: " . $userInfo['bdate'] . '<br />';
-        echo '<img src="' . $userInfo['photo_big'] . '" />'; echo "<br />";
-    }
-}
+if (isset($_SESSION['auth']))
+{
+?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <img src="<?php echo $_SESSION['photo_big'] ?>" alt="" width="65" height="65">
+            <a href="<?php echo 'https://vk.com/'.$_SESSION['screen_name'] ?>" target="_blank"><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name'] ?></a>
+            <a href="exit" class="exit">Выход</a>
+        </div>
+    </div>
+</div>
+    <?php } ?>
+    <br>
+<div class="container message">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <form action="">
+                <textarea name="message"></textarea><br>
+                <?php if (isset($_SESSION['auth'])){ ?>
+                <input class="sendbtn" type="submit" name="send" value="Отправить">
+                <?php }else{echo '<a href="/">Для отправки сообщений необходимо авторизироваться</a>';} ?>
+            </form>
+        </div>
+    </div>
+</div>
