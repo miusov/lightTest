@@ -2,7 +2,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center auth">
-            <a href="http://oauth.vk.com/authorize?client_id=5887121&redirect_uri=http://lightit/user/login/&response_type=code">Войти с помощью VK</a>
+            <?php
+
+            require_once(ROOT.'/config/api.php');
+
+            $params = array(
+                'client_id'     => $client_id,
+                'redirect_uri'  => $redirect_uri,
+                'response_type' => 'code'
+            );
+
+            echo $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через ВКонтакте</a></p>';
+            
+            ?>
         </div>
     </div>
 </div>

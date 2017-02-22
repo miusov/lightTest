@@ -2,11 +2,9 @@
 
 Адрес сайта: http://lighttest/
 
-/models/Site.php
-
 Настройки:
 
-config/db_params
+config/db_params.php
 
 ID приложения = '5887121'(models/link.php)
 
