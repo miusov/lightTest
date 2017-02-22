@@ -1,5 +1,8 @@
 <?php
 
 return array(
-    'auth' => 'auth',
+
+    'messages' => 'messages/index',
+    '' => 'auth/index'
+    
 );

@@ -1,0 +1,12 @@
+.auth{
+    height: 100vh;
+    line-height: 100vh;
+}
+.auth a{
+    padding: 10px 25px;
+    border: 1px solid #305075;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #507299;
+    text-decoration: none;
+}
