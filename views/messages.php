@@ -42,12 +42,26 @@ if (isset($_SESSION['auth']))
                             Комментировать сообщение
                         </div>
                         <div class="hidden_form">
-                            <form action="">
-                                <textarea name="sub_comment" id="sub_comment"></textarea>
-                                <input class="sendbtn" type="submit" name="send_hidden_form" value="Комментировать">
+                            <form action="/comment/" method="post">
+                                <textarea name="comment" id="sub_comment"></textarea>
+                                <input type="hidden" value="<?php echo $mess['id'] ?>" name="mess_id">
+                                <input class="sendbtn" type="submit" name="sendcomment" value="Комментировать">
                             </form>
                         </div>
                         <?php }else{echo '<a href="/">Для комментирования сообщений выполните вход!</a>';} ?>
+                        <?php foreach ($comments as $comm){ ?>
+                        <div class="comments">
+                            <div class="col-md-2 col-md-offset-1 text-center user_info">
+                                <img src="<?php echo $comm['foto'] ?>" alt="" width="65" height="65">
+                                <?php echo $comm['name'] ?>
+                            </div>
+                            <div class="col-md-9 comment_block">
+                                <?php echo $comm['message'] ?>
+                                <div class="date_block text-right"><?php echo $comm['created_at'] ?></div>
+                            </div>
+
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             <?php } ?>

@@ -7,6 +7,7 @@ class MessagesController
     public function actionIndex()
     {
         $messages = Messages::getMessage();
+        $comments = Messages::getComment();
         
         require_once(ROOT.'/views/messages.php');
         return true;
@@ -25,6 +26,26 @@ class MessagesController
             Messages::addMessage($name,$foto,$user_id,$message,$created_at);
 
             echo '<script type="text/javascript">window.location.href="messages"</script>';
+        }
+
+        return true;
+    }
+
+    public function actionComment()
+    {
+        if (isset($_POST['sendcomment'])) {
+
+            $mess_id = $_POST['mess_id'];
+            $name = $_SESSION['first_name'];
+            $foto = $_SESSION['photo_big'];
+            $user_id = $_SESSION['uid'];
+            $message = $_POST['comment'];
+            $created_at = date("Y-m-d H:i:s");
+
+            Messages::addComment($mess_id,$name,$foto,$user_id,$message,$created_at);
+
+            echo '<script type="text/javascript">window.location.href="messages"</script>';
+
         }
 
         return true;

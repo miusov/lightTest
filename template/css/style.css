@@ -63,7 +63,7 @@ body{
     margin-bottom:5px;
 }
 
-.message_block {
+.message_block, .comment_block {
 
     border: 1px solid #D1D7DE;
     border-radius: 10px;
@@ -73,7 +73,7 @@ body{
     margin-bottom: 20px;
 }
 
-.message_block::before, .message_block::after {
+.message_block::before, .message_block::after, .comment_block::before, .comment_block::after {
 
     content: '';
     position: absolute;
@@ -83,7 +83,7 @@ body{
 
 }
 
-.message_block::after {
+.message_block::after, .comment_block::after {
 
     border-right: 10px solid #F7F7F9;
     left: -19px;
@@ -94,11 +94,15 @@ body{
     font-style: italic;
 }
 
-.comment_message{
+.comment_message, .vew_comment{
     cursor: pointer;
     color: #6687A7;
 }
 
 .hidden_form{
     display: none;
+}
+
+.comments{
+    margin-top:50px;
 }
