@@ -44,14 +44,25 @@ class Messages
         $ins->execute($data);
     }
 
-    public static function getComment()
+    public static function getComment($mess_id)
     {
         $db = Db::getConnection();
 
-        $result = $db->prepare('SELECT * FROM messages WHERE mess_id=140');
+        $result = $db->prepare('SELECT * FROM messages WHERE mess_id='.$mess_id);
         $result->execute();
         $comments = $result->fetchAll(PDO::FETCH_ASSOC);
 
         return $comments;
     }
+
+    public static function editMessage($id, $edit)
+    {
+        $db = Db::getConnection();
+
+        $ins = $db->prepare('UPDATE messages SET message="'.$edit.'" WHERE id='.$id);
+        $data = array(
+            'message' => $edit);
+        $ins->execute($data);
+    }
+
 }

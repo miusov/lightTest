@@ -7,7 +7,7 @@ class MessagesController
     public function actionIndex()
     {
         $messages = Messages::getMessage();
-        $comments = Messages::getComment();
+//        $comments = Messages::getComment(140);
         
         require_once(ROOT.'/views/messages.php');
         return true;
@@ -47,6 +47,34 @@ class MessagesController
             echo '<script type="text/javascript">window.location.href="messages"</script>';
 
         }
+
+        return true;
+    }
+
+    public function actionEdit()
+    {
+        if (isset($_POST['editmess'])) {
+
+            $edit = $_POST['edit'];
+            $id = $_POST['id'];
+
+            Messages::editMessage($id, $edit);
+
+            echo '<script type="text/javascript">window.location.href="messages"</script>';
+
+        }
+
+        return true;
+    }
+
+    public function actionDel()
+    {
+        
+            $id = $_POST['id'];
+
+            Messages::delMessage($id);
+
+            echo '<script type="text/javascript">window.location.href="messages"</script>';
 
         return true;
     }

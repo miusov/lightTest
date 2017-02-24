@@ -7,8 +7,9 @@ if (isset($_SESSION['auth']))
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 text-right header">
+            <a href="<?php echo 'https://vk.com/'.$_SESSION['screen_name'] ?>" target="_blank">
             <img src="<?php echo $_SESSION['photo_big'] ?>" alt="" width="65" height="65">
-            <a href="<?php echo 'https://vk.com/'.$_SESSION['screen_name'] ?>" target="_blank"><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name'] ?></a>
+            <?php echo $_SESSION['first_name'].' '.$_SESSION['last_name'] ?></a>
             <a href="exit" class="exit">Выход</a>
         </div>
     </div>
@@ -22,11 +23,21 @@ if (isset($_SESSION['auth']))
                 <textarea name="message"></textarea><br>
                 <?php if (isset($_SESSION['auth'])){ ?>
                 <input class="sendbtn" type="submit" name="send" value="Отправить">
-                <?php }else{echo '<a href="/">Для добавления и комментирования сообщений выполните вход!</a>';} ?>
+                <?php }else{echo '<div  class="text-right"><a href="/">Для добавления и комментирования сообщений выполните вход!</a></div>';} ?>
             </form>
         </div>
     </div>
     <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+    <div class="hidden_mess">
+        <span>Скрыть все сообщения | </span>
+    </div>
+            <div class="view_comm">
+                <span>Показать все комментарии</span>
+            </div>
+        </div>
+    </div>
+    <div class="row all">
         <div class="col-md-10 col-md-offset-1">
             <?php foreach ($messages as $mess){ ?>
                 <div class="block">
@@ -38,9 +49,27 @@ if (isset($_SESSION['auth']))
                         <?php echo $mess['message'] ?>
                         <div class="date_block text-right"><?php echo $mess['created_at'] ?></div>
                         <?php if (isset($_SESSION['auth'])){ ?>
+                            <div class="comment_view">
+                                <span>Показать комментарии | </span>
+                            </div>
                         <div class="comment_message">
-                            Комментировать сообщение
+                            <span>Комментировать сообщение | </span>
                         </div>
+                            <?php if ($mess['user_id']==$_SESSION['uid']){ ?>
+                                <div class="edit_message">
+                                    <span>Редактировать | </span>
+                                </div>
+                                <div class="del_mess">
+                                    <a href="/del/<?php echo $mess['id'] ?>">Удалить</a>
+                                </div>
+                                <div class="hidden_form_edit">
+                                    <form action="/edit/" method="post">
+                                        <textarea name="edit" placeholder="Введите новое сообщение"></textarea>
+                                        <input type="hidden" value="<?php echo $mess['id'] ?>" name="id">
+                                        <input class="sendbtn" type="submit" name="editmess" value="Изменить">
+                                    </form>
+                                </div>
+                        <?php } ?>
                         <div class="hidden_form">
                             <form action="/comment/" method="post">
                                 <textarea name="comment" id="sub_comment"></textarea>
@@ -49,7 +78,9 @@ if (isset($_SESSION['auth']))
                             </form>
                         </div>
                         <?php }else{echo '<a href="/">Для комментирования сообщений выполните вход!</a>';} ?>
-                        <?php foreach ($comments as $comm){ ?>
+                        <?php $comments = Messages::getComment($mess['id']);
+                        foreach ($comments as $comm){
+                            ?>
                         <div class="comments">
                             <div class="col-md-2 col-md-offset-1 text-center user_info">
                                 <img src="<?php echo $comm['foto'] ?>" alt="" width="65" height="65">
@@ -59,7 +90,6 @@ if (isset($_SESSION['auth']))
                                 <?php echo $comm['message'] ?>
                                 <div class="date_block text-right"><?php echo $comm['created_at'] ?></div>
                             </div>
-
                         </div>
                         <?php } ?>
                     </div>
