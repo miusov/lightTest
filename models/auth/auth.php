@@ -5,6 +5,7 @@ require_once ROOT.'/models/Login.php';
 
 if (isset($_GET['code'])) {
     $result = false;
+    //параметры аутентификации
     $params = array(
         'client_id' => $client_id,
         'client_secret' => $client_secret,

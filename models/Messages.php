@@ -27,6 +27,16 @@ class Messages
 
         return $messages;
     }
+
+    public static function editMessage($id, $edit)
+    {
+        $db = Db::getConnection();
+
+        $ins = $db->prepare('UPDATE messages SET message="'.$edit.'" WHERE id='.$id);
+        $data = array(
+            'message' => $edit);
+        $ins->execute($data);
+    }
     
 
     public static function addComment($mess_id,$name,$foto,$user_id,$message,$created_at)
@@ -53,16 +63,6 @@ class Messages
         $comments = $result->fetchAll(PDO::FETCH_ASSOC);
 
         return $comments;
-    }
-
-    public static function editMessage($id, $edit)
-    {
-        $db = Db::getConnection();
-
-        $ins = $db->prepare('UPDATE messages SET message="'.$edit.'" WHERE id='.$id);
-        $data = array(
-            'message' => $edit);
-        $ins->execute($data);
     }
 
 }

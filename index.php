@@ -5,7 +5,7 @@ include_once('template/header.php');
 
 //ошибки
 //ini_set('display_errors,1');
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 
 //подключение файлов
 

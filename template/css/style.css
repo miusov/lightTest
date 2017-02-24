@@ -1,6 +1,9 @@
 body{
     background-color: #EDEEF0;
 }
+hr{
+    margin:0;
+}
 .auth{
     height: 100vh;
     line-height: 100vh;
@@ -21,6 +24,7 @@ body{
 
 .header a{
     color: #fff;
+    text-decoration: none;
 }
 
 .header img{
@@ -34,6 +38,13 @@ body{
     text-decoration: none;
     margin-left: 10px;
     font-weight:bold;
+    border: 1px solid #305075;
+    border-radius: 3px;
+}
+
+.exit:hover{
+    border: 1px solid #fff;
+
 }
 
 .message textarea{
@@ -98,15 +109,20 @@ body{
     cursor: pointer;
     color: #6687A7;
     display: inline;
+    font-size:12px;
 }
 .del_mess a{
     color: #6687A7;
     text-decoration: none;
 }
 
+.comment_submessage{
+    cursor: pointer;
+    color: #6687A7;
+    font-size:12px;
+}
 
-
-.hidden_form{
+.hidden_form, .hidden_form2{
     display: none;
 }
 

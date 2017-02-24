@@ -12,7 +12,7 @@
                 'response_type' => 'code'
             );
 
-            echo $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через ВКонтакте</a></p>';
+            echo $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через ВК</a></p>';
             
             ?>
         </div>

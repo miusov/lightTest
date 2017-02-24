@@ -2,24 +2,24 @@
     $(function() {
 
         $('.comment_message').click(function() {
-            if($(this).next().next().next().next().css('display') != 'block'){
-                $(this).next().next().next().next().slideDown(500);
-                $(this).children('span').text('Скрыть форму | ');
+            if($(this).next().next().next().css('display') != 'block'){
+                $(this).next().next().next().slideDown(500);
+                $(this).children('span').text('Отмена | ');
             }
             else{
-                $(this).next().next().next().next().slideUp(500);
+                $(this).next().next().next().slideUp(500);
                 $(this).children('span').text('Комментировать сообщение | ');
             }
         });
 
         $('.edit_message').click(function() {
-            if($(this).next().next().css('display') != 'block'){
-                $(this).next().next().slideDown(500);
-                $(this).children('span').text('Скрыть форму | ');
+            if($(this).next().css('display') != 'block'){
+                $(this).next().slideDown(500);
+                $(this).children('span').text('Отмена');
             }
             else{
-                $(this).next().next().slideUp(500);
-                $(this).children('span').text('Редактировать | ');
+                $(this).next().slideUp(500);
+                $(this).children('span').text('Редактировать');
             }
         });
 
@@ -54,6 +54,17 @@
                 $('.comments').slideUp(500);
                 $(this).children('span').text('Показать все комментарии');
             }
+        });
+
+            $('.comment_submessage').click(function() {
+                if($(this).next().css('display') != 'block'){
+                    $(this).next().slideDown(500);
+                    $(this).children('span').text('Отмена');
+                }
+                else{
+                    $(this).next().slideUp(500);
+                    $(this).children('span').text('Комментировать');
+                }
         });
 
 

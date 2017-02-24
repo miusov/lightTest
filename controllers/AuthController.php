@@ -21,6 +21,8 @@ class AuthController
         unset($_SESSION["last_name"]);
         unset($_SESSION['photo_big']);
         unset($_SESSION["screen_name"]);
+        unset($_SESSION['uid']);
+        unset($_SESSION['auth']);
 
         echo '<script type="text/javascript">window.location.href="/"</script>';
 
