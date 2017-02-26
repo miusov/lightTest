@@ -1,3 +1,4 @@
+<?php if (isset($_SESSION['auth'])) echo '<script type="text/javascript">window.location.href="messages"</script>'; ?>
 
 <div class="container">
     <div class="row">
